@@ -1,12 +1,12 @@
 // Array implementation of a heap aka binary heap
-// Heap is used in implementation of heap sort and priority queue
-// Useful visualization tool: // http://btv.melezinek.cz/binary-heap.html
+// Heap is used in implementation of heap sort (not as efficient as quick sort) and priority queue
+// Useful visualization tool: http://btv.melezinek.cz/binary-heap.html
 // This implementation uses a fixed size array because:
 // 1. It's easy to compute the array index of a node's children.
-// 2. It's massively more efficient to find the Kth element of an array than the Kth element of a linked list. \Advantages of storing a heap as an array rather than a pointer-based binary tree include the following.
+// 2. It's massively more efficient to find the Kth element of an array than the Kth element of a linked list.
 // 3. Lower memory usage (no need to store three pointers for every element of the heap).
 // 4. Easier memory management (just one object allocated, rather than N).
-// 5. Better locality of reference(the items in the heap are relatively close together in memory).
+// 5. Better locality of reference (the items in the array are relatively close to each other in memory).
 
 using System;
 
@@ -33,7 +33,7 @@ namespace BinaryHeap
         {
             if (heapSize == 0)
             {
-                throw new ArgumentException(nameof(heapSize));
+                throw new ArgumentOutOfRangeException(nameof(heapSize));
             }
 
             _heap = new int?[heapSize + 1]; // Keep the first node blank
@@ -164,7 +164,7 @@ namespace BinaryHeap
         {
             if (_numHeapValues >= _heap.Length-1)
             {
-                throw new ArgumentException("There is no more space to insert");
+                throw new ArgumentOutOfRangeException("There is no more space to insert");
             }
 
             // Insert at the end of the array
